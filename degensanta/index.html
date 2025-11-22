@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>DEGEN SANTA | LIVE ON SOLANA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Degen Santa is live on Solana – no rugs, no dev dump, just pure holiday chaos on Pump.fun." />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #020018;
+            --accent: #ff2fd3;
+            --accent-soft: #ff8ee9;
+            --accent-2: #21e4ff;
+            --solana-1: #14f195;
+            --solana-2: #9945ff;
+            --text-main: #f9f9ff;
+            --text-soft: #a9a9d4;
+            --card-bg: rgba(6, 6, 40, 0.9);
+            --border-soft: rgba(255, 255, 255, 0.06);
+            --radius-lg: 24px;
+            --radius-full: 999px;
+            --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-main);
+            background: radial-gradient(circle at top, #3b0077 0, #020018 45%, #000006 100%);
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(to bottom,
+                    rgba(255, 255, 255, 0.02) 1px,
+                    transparent 1px);
+            background-size: 100% 3px;
+            mix-blend-mode: soft-light;
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1120px;
+            padding: 32px 16px 64px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 12px;
+            background: conic-gradient(from 210deg,
+                    #ff2fd3,
+                    #ff9a62,
+                    #ffe45e,
+                    #21e4ff,
+                    #b892ff,
+                    #ff2fd3);
+            padding: 2px;
+        }
+
+        .logo-mark-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 9px;
+            background: #020018;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.08em;
+        }
+
+        .logo-text-main {
+            font-weight: 700;
+            letter-spacing: 0.11em;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: radial-gradient(circle at top left, rgba(255, 47, 211, 0.35), transparent),
+                rgba(6, 6, 40, 0.8);
+            font-size: 0.75rem;
+            color: var(--accent-soft);
+        }
+
+        .pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: radial-gradient(circle, #5effb5, #1cac6d);
+            box-shadow: 0 0 8px rgba(20, 241, 149, 0.85);
+        }
+
+        /* HERO LAYOUT */
+
+        .hero {
+            margin-bottom: 48px;
+        }
+
+        .hero-flex {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 72px;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .hero-flex-left {
+            flex: 1;
+            min-width: 340px;
+            max-width: 520px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-kicker {
+            font-size: 0.8rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent-soft);
+            margin-bottom: 6px;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            max-width: 480px;
+            margin-bottom: 20px;
+        }
+
+        .hero-sub strong {
+            color: var(--accent-soft);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .hero-footnote {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            opacity: 0.8;
+        }
+
+        .btn {
+            border-radius: var(--radius-full);
+            border: 1px solid transparent;
+            padding: 11px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: transform 0.12s ease-out, box-shadow 0.12s ease-out, border-color 0.12s ease-out, background 0.12s ease-out;
+        }
+
+        .btn-primary {
+            background: radial-gradient(circle at top left, #ffe45e, transparent 52%),
+                linear-gradient(130deg, var(--accent), var(--accent-2));
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+            color: #070016;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: 0 18px 55px rgba(0, 0, 0, 0.9);
+        }
+
+        .btn-ghost {
+            background: rgba(4, 4, 30, 0.75);
+            border-color: rgba(255, 255, 255, 0.15);
+            color: var(--text-soft);
+            opacity: 0.8;
+        }
+
+        /* HERO CARD + SANTA */
+
+        .hero-card {
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            background: linear-gradient(145deg,
+                    rgba(0, 82, 255, 0.22),
+                    rgba(20, 241, 149, 0.05)),
+                var(--card-bg);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.55), 0 1.5px 0 0 var(--accent-2);
+            padding: 18px;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+            max-width: 420px;
+            min-width: 320px;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: -40%;
+            background:
+                radial-gradient(circle at 20% 0, rgba(255, 47, 211, 0.23), transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(33, 228, 255, 0.18), transparent 55%);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .santa-card {
+            position: relative;
+            z-index: 1;
+            background: rgba(3, 3, 30, 0.9);
+            border-radius: 18px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: grid;
+            grid-template-columns: 1.1fr 1.4fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .chain-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: var(--radius-full);
+            padding: 5px 10px;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(2, 0, 24, 0.78);
+        }
+
+        .dot-sol {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--solana-1), var(--solana-2));
+            box-shadow: 0 0 9px rgba(153, 69, 255, 0.9);
+        }
+
+        .santa-img-wrap {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: radial-gradient(circle at top, #2527ff, #05051a);
+            min-width: 120px;
+            min-height: 120px;
+        }
+
+        .santa-img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            height: 100%;
+            max-height: 260px;
+        }
+
+        .santa-meta-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-soft);
+            margin-bottom: 18px;
+        }
+
+        .santa-meta-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .santa-meta-name span {
+            background: linear-gradient(120deg, var(--accent), var(--accent-2));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .santa-meta-desc {
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            margin-bottom: 20px;
+        }
+
+        .santa-meta-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            font-size: 0.7rem;
+            color: var(--accent-soft);
+        }
+
+        .santa-chip {
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(10, 10, 38, 0.9);
+        }
+
+        /* RULES / COPY SECTION */
+
+        .rules-section {
+            margin-top: 12px;
+            margin-bottom: 18px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            padding: 18px 18px 20px;
+            background: radial-gradient(circle at top, rgba(255, 47, 211, 0.18), transparent 55%),
+                radial-gradient(circle at bottom, rgba(33, 228, 255, 0.16), transparent 60%),
+                rgba(2, 0, 24, 0.96);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        .rules-title {
+            font-size: 0.95rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent-soft);
+            margin-bottom: 8px;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+            gap: 14px 24px;
+            font-size: 0.82rem;
+            color: var(--text-soft);
+        }
+
+        .rules-item-emoji {
+            font-size: 1rem;
+            margin-right: 6px;
+        }
+
+        /* GRID SECTION (bottom) */
+
+        .grid-section {
+            margin-top: 12px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            padding: 16px 16px 18px;
+            background: radial-gradient(circle at top, rgba(255, 47, 211, 0.2), transparent 55%),
+                radial-gradient(circle at bottom, rgba(33, 228, 255, 0.18), transparent 60%),
+                radial-gradient(circle at center, rgba(0, 0, 0, 0.7), rgba(2, 0, 24, 1));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px,
+                    transparent 1px);
+            background-size: 100% 22px;
+            opacity: 0.22;
+            mix-blend-mode: screen;
+        }
+
+        .grid-section-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grid-text {
+            font-size: 0.82rem;
+            max-width: 420px;
+            color: var(--text-soft);
+        }
+
+        .grid-text strong {
+            color: var(--accent-soft);
+        }
+
+        .grid-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.75rem;
+        }
+
+        .grid-badge {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(5, 5, 34, 0.95);
+        }
+
+        footer {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 0.72rem;
+            color: var(--text-soft);
+            opacity: 0.75;
+        }
+
+        footer a {
+            color: var(--accent-soft);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1100px) {
+            .hero-flex {
+                flex-direction: column;
+                gap: 40px;
+                align-items: center;
+            }
+
+            .hero-card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .hero-flex {
+                gap: 24px;
+            }
+
+            .hero-flex-left {
+                max-width: 100%;
+            }
+
+            .santa-card {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 18px;
+            }
+
+            .hero-card {
+                min-width: 0;
+            }
+
+            .rules-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanlines"></div>
+
+    <main>
+        <header>
+            <div class="logo">
+                <div class="logo-mark">
+                    <div class="logo-mark-inner">DS</div>
+                </div>
+                <div>
+                    <div class="logo-text-main">DEGEN SANTA</div>
+                    <div style="font-size: 0.75rem; color: var(--text-soft);">
+                        One Meme • One Chain • Infinite Cope
+                    </div>
+                </div>
+            </div>
+
+            <div class="pill">
+                <span class="pill-dot"></span>
+                🎅 LIVE NOW ON&nbsp;<strong>SOLANA</strong>&nbsp;· Pump.fun
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-flex">
+                <div class="hero-flex-left">
+                    <div class="hero-kicker">🎅 Degen Santa is live</div>
+                    <h1 class="hero-title">
+                        <span>DEGEN SANTA</span><br />
+                        running Christmas on-chain.
+                    </h1>
+                    <p class="hero-sub">
+                        Degen Santa has arrived — <strong>no rugs, no dev dump</strong>,
+                        just pure holiday chaos on Pump.fun.<br /><br />
+                        He rides green rockets, chomps degen pills, and hears the
+                        “TO THE MOON” bell every hour. Dev buys for supporting red candles. No fear. No mercy.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="https://pump.fun/coin/DLpsuSgBXUXLNWVa9dQAJNvKxk1kXCM7S7U9p2mKpump" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-primary">
+                            🔥 View on Pump.fun
+                        </a>
+                        <a href="https://pump.fun/coin/DLpsuSgBXUXLNWVa9dQAJNvKxk1kXCM7S7U9p2mKpump" target="_blank"
+                            rel="noopener noreferrer" class="btn btn-ghost">
+                            📈 Track the sleigh (chart)
+                        </a>
+                    </div>
+                    <p class="hero-footnote">
+                        DYOR. This is pure meme energy, not financial advice. Santa is a degen, not your CPA.
+                    </p>
+                </div>
+
+                <aside class="hero-card">
+                    <div class="santa-card">
+                        <div class="santa-img-wrap">
+                            <!-- your main Santa art -->
+                            <img src="/images/degen-santa.png" alt="Degen Santa on Solana" class="santa-img" />
+                        </div>
+                        <div>
+                            <div class="chain-tag">
+                                <span class="dot-sol"></span> DEGEN SANTA · SOLANA
+                            </div>
+                            <div class="santa-meta-title">High-FPS degen mode</div>
+                            <div class="santa-meta-name">
+                                <span>DEGEN SANTA</span>
+                            </div>
+                            <p class="santa-meta-desc">
+                                Surfing memecoins at light speed. Clicks “max” by default, lives in PumpFun chat,
+                                and treats volatility like Christmas fireworks.
+                            </p>
+                            <div class="santa-meta-tags">
+                                <span class="santa-chip">🚀 Rides green rockets</span>
+                                <span class="santa-chip">❄️ Be nice or get rekt</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- RULES / COPY SECTION -->
+        <section class="rules-section">
+            <div class="rules-title">SANTA'S DEGEN RULES</div>
+            <div class="rules-grid">
+                <div>
+                    <div><span class="rules-item-emoji">🛡</span>Dev buys a small launch bag to block sniper bots and
+                        protect the sleigh.</div>
+                    <div><span class="rules-item-emoji">🎁</span>Dev fees go straight to Santa’s sack.</div>
+                    <div><span class="rules-item-emoji">🎉</span>Random $SOL gift drops for wallets spreading the meme —
+                        Santa always rewards the nice.</div>
+                </div>
+                <div>
+                    <div><span class="rules-item-emoji">🔔</span>DSANTA isn’t just a token — it’s a sleigh ride into
+                        meme history.</div>
+                    <div><span class="rules-item-emoji">📉</span>If the chart starts slipping, the sack may activate:
+                        random buys can hit to support the sleigh.</div>
+                    <div><span class="rules-item-emoji">❄️</span>Degen Santa sees everything. Be nice or get rekt.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEXSCREENER IFRAME -->
+        <iframe src="https://dexscreener.com/solana/FR1SJ3tAnwZD48gLFKgdkpuTZkpCFSbNniQsqPgJDcug?embed=1&theme=dark"
+            style="width: 100%; height: 500px; border: 0; border-radius: 16px; overflow: hidden; margin-top: 16px;"
+            allowtransparency="true" scrolling="no" title="Degen Santa SOL chart">
+        </iframe>
+
+        <!-- BOTTOM BLURB -->
+        <section class="grid-section">
+            <div class="grid-section-inner">
+                <div class="grid-text">
+                    <strong>Simple terms:</strong> get in, spread the meme, and ride with the sleigh.
+                    No promises, no roadmap carved in stone — just raw Solana chaos and a Santa
+                    who doesn’t believe in sleep.
+                </div>
+                <div class="grid-badges">
+                    <div class="grid-badge">🎄 Holiday degen energy</div>
+                    <div class="grid-badge">🧨 Pump.fun native</div>
+                    <div class="grid-badge">#DSANTA #PumpFun #MemeCoin</div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Crafted by degenerates for degenerates.
+            Currently live on <strong>Solana</strong> only.
+            <br />
+            Not affiliated with Solana, Santa, or whoever runs the North Pole HR department.
+        </footer>
+    </main>
+</body>
+
+</html>
